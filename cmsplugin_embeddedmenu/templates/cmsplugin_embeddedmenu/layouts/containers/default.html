@@ -1,9 +1,0 @@
-{% load menu_tags %}
-<div id="cms-menu-{{ plugin.instance.id }}"
-     class="cms-plugin cms-{{ plugin.plugin_type|slugify }}"
-     data-plugin-position="{{ plugin.position }}">
-
-  <h3>{{ plugin.instance.menu_title }}<small>{{ plugin.instance.sub_title }}</small></h4>
-  {% include plugin.instance.tree_template with Children=MenuItems %}
-
-</div>

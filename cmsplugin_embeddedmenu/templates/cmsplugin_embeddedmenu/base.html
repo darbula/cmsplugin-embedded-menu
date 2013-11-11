@@ -1,1 +1,13 @@
-{% include plugin.instance.container_template %}
+<div id="cms-menu-{{ plugin.instance.id }}"
+     class="cms-plugin cms-{{ plugin.plugin_type|slugify }}"
+     data-plugin-position="{{ plugin.position }}">
+
+  	<h2>{{ plugin.instance.menu_title }}<small>{{ plugin.instance.sub_title }}</small></h2>
+	<ul>
+	{% for node in MenuItems %} 
+		{% include plugin.instance.template %}
+	{% endfor %}
+	</ul>  
+</div>
+
+{% load menu_tags %}
