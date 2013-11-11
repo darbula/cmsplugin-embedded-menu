@@ -24,6 +24,7 @@ setup(
     packages=find_packages(),
     install_requires=(
         'django-cms',
+        'django-appconf',
     ),
     author='Zenobius Jiricek',
     author_email='airtonix@gmail.com',
