@@ -4,6 +4,7 @@ from django.template.loader import get_template
 from django.template.loaders.app_directories import app_template_dirs
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.importlib import import_module
+from django.conf import settings
 
 from cms.models import Placeholder, Page
 
@@ -91,13 +92,16 @@ class DynamicTemplateChoices(DynamicChoice):
         super(DynamicTemplateChoices, self).__init__(self, *args, **kwargs)
         self.path = path
         self.include = include
-        self.exclude = exclude
+        self.exclude = default_file
+        if exclude is not None:
+            self.exclude += "," + exclude
         self.default_file = default_file
 
     def generate(self, *args, **kwargs):
         choices = list()
         choices += ( (os.path.join(self.path,self.default_file), "Default"), )
-        for template_dir in app_template_dirs:
+        template_dirs = app_template_dirs + settings.TEMPLATE_DIRS 
+        for template_dir in template_dirs:
           results = self.walkdir(os.path.join(template_dir, self.path))
           if results:
               choices += results
