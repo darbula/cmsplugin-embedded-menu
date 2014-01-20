@@ -1,4 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
+import re
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
@@ -66,7 +67,8 @@ class MenuPlugin(CMSPluginBase):
     	if root_node and instance.include_root :
                 children = (root_node, )
         context.update({
-            'MenuItems' : children
+            'MenuItems': children,
+            'template': re.search('(\w*).html', instance.template).groups()[0],
         })
         return context
 
