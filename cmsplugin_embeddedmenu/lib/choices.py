@@ -136,7 +136,7 @@ class DynamicTemplateChoices(DynamicChoice):
             for item in files :
                 output += ( (
                     os.path.join(self.path, item),
-                    deslugify(os.path.splitext(item)[0]),
+                    deslugify(os.path.splitext(item)[0]).title(),
                 ),)
 
             for item in dirs :
