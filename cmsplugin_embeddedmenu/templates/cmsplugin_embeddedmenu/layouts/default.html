@@ -1,6 +1,5 @@
 {% if node.visible %}
-<li class="{% if node.selected %}selected{% endif %}{% if node.ancestor %}ancestor{% endif %}{% if node.sibling %}sibling{% endif %}{% if node.descendant %}descendant{% endif %}"
-         data-node-depth="{{ node.level }}">
+<li class="{% if node.selected %}selected{% endif %}{% if node.ancestor %}ancestor{% endif %}{% if node.sibling %}sibling{% endif %}{% if node.descendant %}descendant{% endif %}" data-node-depth="{{ node.level }}">
 	<a href="{{ node.attr.redirect_url|default:node.get_absolute_url }}">{{ node.get_menu_title }}</a>
     {% if node.children %}
     <ul>
