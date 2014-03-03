@@ -45,6 +45,7 @@ class MenuPlugin(CMSPluginBase):
         to_level = instance.depth
 
         nodes = menu_pool.get_nodes(request)
+        #TODO: there is better way to do this using node.id==public_page_id
         # find the root id and cut the nodes
         root_node = None
         for node in nodes:
