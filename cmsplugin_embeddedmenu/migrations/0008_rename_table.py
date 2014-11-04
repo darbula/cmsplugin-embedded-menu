@@ -7,15 +7,15 @@ from . import rename_tables_new_to_old, rename_tables_old_to_new
 
 
 class Migration(SchemaMigration):
-  cms_plugin_table_mapping = (
+    cms_plugin_table_mapping = (
         ('cmsplugin_menupluginsettings', 'cmsplugin_embeddedmenu_menupluginsettings'),
-  )
+    )
 
-  def forwards(self, orm):
-    rename_tables_old_to_new(db, self.cms_plugin_table_mapping)
+    def forwards(self, orm):
+        rename_tables_old_to_new(db, self.cms_plugin_table_mapping)
 
-  def backwards(self, orm):
-    rename_tables_new_to_old(db, self.cms_plugin_table_mapping)
+    def backwards(self, orm):
+        rename_tables_new_to_old(db, self.cms_plugin_table_mapping)
 
 
     models = {
