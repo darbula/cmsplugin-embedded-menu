@@ -64,9 +64,17 @@ class MenuPlugin(CMSPluginBase):
 
         children = cut_levels(nodes, from_level, to_level, extra_inactive=100, extra_active=100)
         children = menu_pool.apply_modifiers(children, request, post_cut=True)
-        
-    	if root_node and instance.include_root :
-                children = (root_node, )
+
+        if root_node and instance.include_root:
+            children = (root_node, )
+
+        def add_menu_levels(child, level):
+            child.menu_level = level
+            for child in child.children:
+                add_menu_levels(child, level+1)
+        for child in children:
+            add_menu_levels(child, 0)
+
         context.update({
             'MenuItems': children,
             'template': re.search('(\w*).html', instance.template).groups()[0],
