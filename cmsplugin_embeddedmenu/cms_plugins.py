@@ -62,7 +62,10 @@ class MenuPlugin(CMSPluginBase):
         else:
             nodes = []
 
-        children = cut_levels(nodes, from_level, to_level, extra_inactive=100, extra_active=100)
+        extra_levels = to_level - from_level
+        children = cut_levels(nodes, from_level, to_level,
+                              extra_inactive=extra_levels,
+                              extra_active=extra_levels)
         children = menu_pool.apply_modifiers(children, request, post_cut=True)
 
         if root_node and instance.include_root:
