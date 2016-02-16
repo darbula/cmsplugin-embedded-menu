@@ -46,7 +46,7 @@ class MenuPluginSettings(CMSPlugin):
     start_level = models.IntegerField(_("Start Level"), default = 0,
         help_text = _("""Should the root page also be included in the output?"""))
 
-    depth = models.IntegerField(_("Depth"), default = 0,
+    show_depth = models.IntegerField(_("Depth"), default = 0,
         help_text = _("""How many levels deep to look for menu items to show?"""))
 
     def __unicode__(self): return u'%s' % self.menu_title
