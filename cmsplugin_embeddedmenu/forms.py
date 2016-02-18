@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django.utils.safestring import SafeText
 
 from .models import (
-  MenuPluginSettings,
+    MenuPluginSettings,
 )
 
 
@@ -10,6 +10,7 @@ class EmbedPagesAdminForm(ModelForm):
 
     class Meta:
         model = MenuPluginSettings
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super(EmbedPagesAdminForm, self).__init__(*args, **kwargs)

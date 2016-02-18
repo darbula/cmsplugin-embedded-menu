@@ -1,7 +1,7 @@
 import os
 
 from django.template.loader import get_template
-from django.template.loaders.app_directories import app_template_dirs
+from django.template.utils import get_app_template_dirs
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.importlib import import_module
 from django.conf import settings
@@ -9,6 +9,7 @@ from django.conf import settings
 from cms.models import Placeholder, Page
 
 from .formatting import deslugify
+
 
 class DynamicChoice(object):
     """
@@ -100,7 +101,7 @@ class DynamicTemplateChoices(DynamicChoice):
     def generate(self, *args, **kwargs):
         choices = list()
         choices += ( (os.path.join(self.path,self.default_file), "Default"), )
-        template_dirs = app_template_dirs + settings.TEMPLATE_DIRS 
+        template_dirs = get_app_template_dirs('templates') + settings.TEMPLATE_DIRS
         for template_dir in template_dirs:
           results = self.walkdir(os.path.join(template_dir, self.path))
           if results:
