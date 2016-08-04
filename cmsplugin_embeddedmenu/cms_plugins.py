@@ -42,7 +42,7 @@ class MenuPlugin(CMSPluginBase):
         root_page = instance.root
         root_page_url = root_page.get_absolute_url()
         from_level = instance.start_level
-        to_level = instance.depth
+        to_level = instance.show_depth
 
         nodes = menu_pool.get_nodes(request)
         #TODO: there is better way to do this using node.id==public_page_id
