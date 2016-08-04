@@ -30,6 +30,7 @@ class MenuPlugin(CMSPluginBase):
     render_template = "cmsplugin_embeddedmenu/base.html"
     admin_preview = False
     form = EmbedPagesAdminForm
+    text_enabled = True
 
     def render(self, context, instance, placeholder):
 
