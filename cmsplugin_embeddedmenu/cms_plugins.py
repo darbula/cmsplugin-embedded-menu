@@ -41,19 +41,19 @@ class MenuPlugin(CMSPluginBase):
             return _("There is no `request` object in the context.")
 
         root_page = instance.root
-        root_page_url = root_page.get_absolute_url()
         from_level = instance.start_level
         to_level = instance.show_depth
 
         nodes = menu_pool.get_nodes(request)
-        #TODO: there is better way to do this using node.id==public_page_id
-        # find the root id and cut the nodes
         root_node = None
         for node in nodes:
-            if node.url==root_page_url:
+            if not node.attr["is_page"]:
+                continue
+            if node.id==root_page.id or \
+                node.id==root_page.publisher_public_id:
                 root_node = node
                 break
-        if root_node:
+        if root_node is not None:
             nodes = root_node.children
             for remove_parent in nodes:
                 remove_parent.parent = None
