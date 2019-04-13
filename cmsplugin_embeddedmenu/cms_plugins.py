@@ -44,7 +44,13 @@ class MenuPlugin(CMSPluginBase):
         from_level = instance.start_level
         to_level = instance.show_depth
 
-        nodes = menu_pool.get_nodes(request)
+        renderer = menu_pool.get_renderer(request)
+        nodes = renderer.get_nodes(
+            namespace=None,
+            root_id=None,
+            breadcrumb=False,
+        )
+        # nodes = menu_pool.get_nodes(request)
         root_node = None
         for node in nodes:
             if not node.attr["is_page"]:
@@ -67,7 +73,7 @@ class MenuPlugin(CMSPluginBase):
         children = cut_levels(nodes, from_level, to_level,
                               extra_inactive=extra_levels,
                               extra_active=extra_levels)
-        children = menu_pool.apply_modifiers(children, request, post_cut=True)
+        children = renderer.apply_modifiers(children, post_cut=True)
 
         if root_node and instance.include_root:
             children = (root_node, )

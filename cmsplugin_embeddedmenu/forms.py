@@ -19,7 +19,7 @@ class EmbedPagesAdminForm(ModelForm):
             choices.append(
                 (
                   page.id,
-                  SafeText(''.join([u"&nbsp;"*len(page.path), page.__unicode__()]))
+                  SafeText(''.join([u"&nbsp;"*len(page.node.path), page.__unicode__()]))
                 )
             )
 
