@@ -50,7 +50,6 @@ class MenuPlugin(CMSPluginBase):
             root_id=None,
             breadcrumb=False,
         )
-        # nodes = menu_pool.get_nodes(request)
         root_node = None
         for node in nodes:
             if not node.attr["is_page"]:
@@ -86,6 +85,7 @@ class MenuPlugin(CMSPluginBase):
             add_menu_levels(child, 0)
 
         context.update({
+            'instance': instance,
             'MenuItems': children,
             'template': re.search('(\w*).html', instance.template).groups()[0],
         })

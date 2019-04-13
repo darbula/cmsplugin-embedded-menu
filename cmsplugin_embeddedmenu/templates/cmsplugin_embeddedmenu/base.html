@@ -1,9 +1,9 @@
-<div id="cms-menu-{{ plugin.id }}" class="cms-plugin {{ template }}" data-plugin-position="{{ plugin.position }}">
-    {% if plugin.menu_title %}<h2>{{ plugin.menu_title }}{% if plugin.sub_title %}<small>{{ plugin.sub_title }}</small>{% endif %}</h2>{% endif %}
+<div id="cms-menu-{{ instance.id }}" class="cms-plugin {{ template }}" data-plugin-position="{{ instance.position }}">
+    {% if instance.menu_title %}<h2>{{ instance.menu_title }}{% if instance.sub_title %}<small>{{ instance.sub_title }}</small>{% endif %}</h2>{% endif %}
     <div>
-		<ul id="panel-group-{{ plugin.id }}" class="panel-group">
+		<ul id="panel-group-{{ instance.id }}" class="panel-group">
 		{% for node in MenuItems %}
-			{% include plugin.template %}
+			{% include instance.template %}
 		{% endfor %}
 		</ul>
     </div>
