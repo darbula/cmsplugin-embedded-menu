@@ -55,8 +55,8 @@ class MenuPlugin(CMSPluginBase):
         for node in nodes:
             if not node.attr["is_page"]:
                 continue
-            if node.id==root_page.id or \
-                node.id==root_page.publisher_public_id:
+            if node.id == root_page.id or \
+                    node.id == root_page.publisher_public_id:
                 root_node = node
                 break
         if root_node is not None:
@@ -92,4 +92,3 @@ class MenuPlugin(CMSPluginBase):
         return context
 
 plugin_pool.register_plugin(MenuPlugin)
-
