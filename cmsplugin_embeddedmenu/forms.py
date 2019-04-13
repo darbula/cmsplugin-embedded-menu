@@ -15,7 +15,7 @@ class EmbedPagesAdminForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(EmbedPagesAdminForm, self).__init__(*args, **kwargs)
         choices = [self.fields['root'].choices.__iter__().next()]
-        for page in Page.objects.public():
+        for page in Page.objects.drafts().order_by('node__path'):
             choices.append((
                 page.id,
                 SafeText(''.join([
