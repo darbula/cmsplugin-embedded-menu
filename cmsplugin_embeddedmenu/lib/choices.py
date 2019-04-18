@@ -98,11 +98,12 @@ class DynamicTemplateChoices(DynamicChoice):
     def generate(self, *args, **kwargs):
         choices = list()
         choices += ( (os.path.join(self.path,self.default_file), "Default"), )
-        template_dirs = get_app_template_dirs('templates') + tuple(settings.TEMPLATE_DIRS)
+        template_dirs = get_app_template_dirs('templates')
+        template_dirs += tuple(settings.TEMPLATES[0].get("DIRS", []))
         for template_dir in template_dirs:
-          results = self.walkdir(os.path.join(template_dir, self.path))
-          if results:
-              choices += results
+            results = self.walkdir(os.path.join(template_dir, self.path))
+            if results:
+                choices += results
         return choices
 
     def walkdir(self, path=None):
