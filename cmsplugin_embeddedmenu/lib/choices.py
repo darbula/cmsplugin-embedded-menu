@@ -1,9 +1,6 @@
 import os
 
-from django.template.loader import get_template
 from django.template.utils import get_app_template_dirs
-from django.core.exceptions import ImproperlyConfigured
-from importlib import import_module
 from django.conf import settings
 
 from cms.models import Placeholder, Page
