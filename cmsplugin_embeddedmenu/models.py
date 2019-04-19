@@ -12,7 +12,7 @@ def get_templates():
         settings,
         'CMSPLUGIN_EMBEDDED_MENU_STYLE_CHOICES',
         [
-            ('default', _('Default')),
+            ("cmsplugin_embeddedmenu/layouts/default.html", _('Default')),
         ],
     )
     return choices
