@@ -1,15 +1,21 @@
 import os
-
+from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
 from cms.models.pluginmodel import CMSPlugin
-
 from appconf import AppConf
 
-from .lib.choices import (
-    DynamicTemplateChoices,
-)
+
+# Add additional choices through the ``settings.py``.
+def get_templates():
+    choices = getattr(
+        settings,
+        'CMSPLUGIN_EMBEDDED_MENU_STYLE_CHOICES',
+        [
+            ('default', _('Default')),
+        ],
+    )
+    return choices
 
 
 class ApplicationSettings(AppConf):
@@ -42,10 +48,8 @@ class MenuPluginSettings(CMSPlugin):
     )
     template = models.CharField(
         _("Plugin Template"),
-        choices=DynamicTemplateChoices(
-            path=ApplicationSettings.TEMPLATE_PATH,
-            include='.html'
-        ),
+        choices=get_templates(),
+        default=get_templates()[0][0],
         max_length=256,
         help_text=_("Use this template to render the menu.")
     )
